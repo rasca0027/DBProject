@@ -1,14 +1,13 @@
 
 		<?php
-			$search = $_POST["search"];
-			//$type = $_GET["type"];
+			$album = $_POST["Album"];
+			$artist = $_POST["Artist"];
 			header('content-type: text/html; charset=utf-8');
-			
 			//取出資料庫內容
 			include('connmusic.php');
 
 				//SONGS searched//
-				$res =  mysqli_query("SELECT * FROM `songs` WHERE `Sname` LIKE '%".$search."%' OR `Artist` LIKE '%".$search."%' OR `Album` LIKE '%".$search."%'"); 
+				$res =  mysqli_query("SELECT * FROM `songs` WHERE `Aname` = '".$album."' AND `Artist` = '".$artist."'"); 
 				$row_total = mysqli_num_rows($res);
 				
 				//存入 saa_data

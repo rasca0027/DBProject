@@ -1,13 +1,14 @@
 
 		<?php
-			$name = $_POST["search"];
+			$cname = $_POST["ConcertName"];
+			$cdate = $_POST["ConcertDate"];
+			$time = $_POST["time"];
 			header('content-type: text/html; charset=utf-8');
-			
 			//取出資料庫內容
 			include('connmusic.php');
 
-				//CONCERTS searched//
-				$res =  mysqli_query("SELECT * FROM `concerts` NATURAL JOIN `setlist` WHERE `ConcertName` LIKE '%".$search."%' OR `Artist` LIKE '%".$search."%' OR `Sname` LIKE '%".$search."%' "); 
+				//Acomment searched//
+				$res =  mysqli_query("SELECT * FROM `concerts` WHERE `ConcertName` = '".$cname."' AND `ConcertDate` = '".$cdate."' AND `time` = '".$time."' "); 
 				$row_total = mysqli_num_rows($res);
 				
 				//存入 concerts_data
