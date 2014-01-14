@@ -8,12 +8,12 @@
 			include('connmusic.php');
 
 				//SONGS searched//
-				$res =  mysqli_query("SELECT * FROM `songs` WHERE `Sname` LIKE '%".$search."%' OR `Artist` LIKE '%".$search."%' OR `Album` LIKE '%".$search."%'"); 
-				$row_total = mysqli_num_rows($res);
+				$res =  $mysqli->query("SELECT * FROM `songs` WHERE `Sname` LIKE '%".$search."%' OR `Artist` LIKE '%".$search."%' OR `Album` LIKE '%".$search."%'"); 
+				$row_total = $res->num_rows($res);
 				
 				//存入 saa_data
 				for ($y = 0;$y < ($row_total) ;$y++){
-					$row = mysqli_fetch_array($res);
+					$row = $res->fetch_array(MYSQLI_ASSOC);
 					$saa_data[$y] = $row;
 				}
 				$saa_data['len'] = $row_total;

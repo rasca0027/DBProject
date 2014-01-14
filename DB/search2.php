@@ -7,12 +7,12 @@
 			include('connmusic.php');
 
 				//CONCERTS searched//
-				$res =  mysqli_query("SELECT * FROM `concerts` NATURAL JOIN `setlist` WHERE `ConcertName` LIKE '%".$search."%' OR `Artist` LIKE '%".$search."%' OR `Sname` LIKE '%".$search."%' "); 
-				$row_total = mysqli_num_rows($res);
+				$res =  $mysqli->query("SELECT * FROM `concerts` NATURAL JOIN `setlist` WHERE `ConcertName` LIKE '%".$search."%' OR `Artist` LIKE '%".$search."%' OR `Sname` LIKE '%".$search."%' "); 
+				$row_total = $res->num_rows($res);
 				
 				//存入 concerts_data
 				for ($y = 0;$y < ($row_total) ;$y++){
-					$row = mysqli_fetch_array($res);
+					$row = $res->fetch_array(MYSQLI_ASSOC);
 					$concerts_data[$y] = $row;
 				}
 				$concerts_data['len'] = $row_total;
