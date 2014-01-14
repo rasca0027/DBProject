@@ -9,7 +9,7 @@
 
 				//SONGS searched//
 				$res =  $mysqli->query("SELECT * FROM `songs` WHERE `Sname` LIKE '%".$search."%' OR `Artist` LIKE '%".$search."%' OR `Album` LIKE '%".$search."%'"); 
-				$row_total = $res->num_rows($res);
+				$row_total = $res->num_rows;
 				
 				//存入 saa_data
 				for ($y = 0;$y < ($row_total) ;$y++){

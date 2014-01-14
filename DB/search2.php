@@ -8,7 +8,7 @@
 
 				//CONCERTS searched//
 				$res =  $mysqli->query("SELECT * FROM `concerts` NATURAL JOIN `setlist` WHERE `ConcertName` LIKE '%".$search."%' OR `Artist` LIKE '%".$search."%' OR `Sname` LIKE '%".$search."%' "); 
-				$row_total = $res->num_rows($res);
+				$row_total = $res->num_rows;
 				
 				//存入 concerts_data
 				for ($y = 0;$y < ($row_total) ;$y++){

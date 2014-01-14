@@ -7,7 +7,7 @@
 
 				//SONGS searched//
 				$res =  $mysqli->query("SELECT * FROM `songs` WHERE `Artist` = '".$artist."'"); 
-				$row_total = $res->num_rows($res);
+				$row_total = $res->num_rows;
 				
 				//存入 saa_data
 				for ($y = 0;$y < ($row_total) ;$y++){
