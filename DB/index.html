@@ -2,17 +2,17 @@
 <html lang="en">
   <head>
     <title>Music Website</title>
+    <META http-equiv="Content-Type" content="text/html; charset=utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="controller.js"></script>
-        
+    <script type="application/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>    
 
   </head>
 
 
   <body>
-
     <div class="row">
       <div class="navbar">
         <div class="navbar-inner">
@@ -31,9 +31,9 @@
       <div class="span7 offset5">  
  
 
-        <form method="POST">      
-          <input type="text" class="span3" placeholder="search" name="search" id="search">
-          <button type="submit" class="btn" id="go">GO!</button>
+        <form method="POST" action="search.php">      
+          <input type="text" class="span3" placeholder="search" name="search" id="search"/>
+          <button type="submit" id="go" >GO</button>
         </form>
       </div>
 
@@ -55,9 +55,45 @@
           <div>Deadweightloss- #FFF5EE</div>
       </div>
 
-    <script src="http://code.jquery.com/jquery.js"></script>
+    
     <script src="js/bootstrap.min.js"></script>
     </div> 
+
+ <!--   <script type="application/json">
+      function eventHandler(event){
+  var search = $('#search').val();
+
+  $.ajax({
+
+    url: "search.php",
+    data: {search: search},
+    type: "POST",
+    dataType: "json",
+
+    error: function(res){ //傳送失敗則跳出失敗訊息
+      alert("eeee");  
+    },
+
+    success:function(res){//傳送成功則跳出成功訊息  
+      alert("成功");
+          
+      var temp = "<table>"; 
+            
+        for(var n = 0; n< res.len; n++){
+          temp = temp +"<tr><td>"+ linkout('song', res[n]) +"</td><td>" +
+          linkout('artist', res[n]) +"</td><td>" +
+          linkout('album',  res[n]) + "</td><td>" +
+          res[n].number +"</td></tr>" ;
+        }
+                    
+      temp = temp+ "</table>";  
+      document.getElementById("result1").innerHTML = temp;
+    }
+
+  }); 
+  //alert('hi');
+}
+    </script>-->
 
   </body>
 </html>
