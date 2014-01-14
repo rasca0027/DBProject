@@ -5,7 +5,7 @@ function eventHandler(event){
 
 		url: "search.php",
 		data: {search: search},
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -39,7 +39,7 @@ function eventHandler1(event){
 
 		url: "search2.php",
 		data: {search: search},
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -74,7 +74,7 @@ function showAlbumCommentPrev(event){
 		data: { Artist: Artist,
 			Album: Album,
 			comment: "empty"},
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -106,7 +106,7 @@ function showAlbumComment(event){
 		data: { Artist: Artist,
 			Album: Album,
 			comment: comment},
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -139,7 +139,7 @@ function showSongComment(event){
 			Album: Album,
 			Sname: Sname,
 			comment: comment},
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -169,7 +169,7 @@ function showSongCommentPrev(event){
 			Album: Album,
 			Sname: Sname,
 			comment: "empty" },
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -198,7 +198,7 @@ function showArtist(event){
 
 		url: "showArtist.php",
 		data: {Artist: Artist },
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -229,7 +229,7 @@ function showArtist2(event){
 
 		url: "showArtist2.php",
 		data: {Artist: Artist},
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -261,7 +261,7 @@ function showAlbum(event){
 		url: "showAlbum.php",
 		data: {Artist:artist,
 			Album:album },
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -292,7 +292,7 @@ function showAlbum2(event){
 		url: "showAlbum2.php",
 		data: {Album: Album,
 			Artist: Artist},
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -324,7 +324,7 @@ function showConcert(event){
 		data: {ConcertName: ConcertName,
 			ConcertDate: ConcertDate,
 			time: time },
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -356,7 +356,7 @@ function showSetlist(event){
 		data: {ConcertName:ConcertName,
 			ConcertDate: ConcertDate,
 			time: time },
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -387,7 +387,7 @@ function showMember(event){
 
 		url: "showMember.php",
 		data: {Artist: Artist },
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -418,7 +418,7 @@ function showSongInfo(event){
 		url: "showSongInfo.php",
 		data: {Artist: Artist,
 			Sname: Sname },
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
@@ -449,7 +449,7 @@ function showSimilarSongs(event){
 		url: "similarSong.php",
 		data: {Artist: Artist,
 			Sname: Sname },
-		method: "POST",
+		type: "POST",
 		dataType: "json",
 
 		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
