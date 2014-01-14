@@ -56,7 +56,6 @@ function eventHandler1(event){
 				res[n].ConcertDate + "</td><td>" + 
 				res[n].time + "</td><td>" + 
 				res[n].Artist + "</td><td>" + 
-				res[n].# +"</td><td>" + 
 				res[n].Sname +"</td></tr>";
 			}						
 			temp = temp+ "</table>";	
@@ -89,7 +88,7 @@ function showAlbumCommentPrev(event){
 			for(var n = 0; n< res.len; n++){
 				temp = temp +"<tr><td>"+ res[n].Acomment + "</td><td>" + res[n].Timestamp + "</td></tr>";
 			}
-		
+			temp = temp+ "</table>";
 			
 			document.getElementById("album_comment").innerHTML = temp;
 		}
@@ -121,7 +120,7 @@ function showAlbumComment(event){
 			for(var n = 0; n< res.len; n++){
 				temp = temp +"<tr><td>"+ res[n].Acomment + "</td><td>" + res[n].Timestamp + "</td></tr>";
 			}
-		
+			temp = temp+ "</table>";
 			
 			document.getElementById("album_comment").innerHTML = temp;
 		}
@@ -154,7 +153,7 @@ function showSongComment(event){
 			for(var n = 0; n< res.len; n++){
 				temp = temp +"<tr><td>"+ res[n].Scomment + "</td><td>" + res[n].Timestamp + "</td></tr>";
 			}
-		
+			temp = temp+ "</table>";
 			
 			document.getElementById("song_comment").innerHTML = temp;
 		}
@@ -184,7 +183,7 @@ function showSongCommentPrev(event){
 			for(var n = 0; n< res.len; n++){
 				temp = temp +"<tr><td>"+ res[n].Scomment + "</td><td>" + res[n].Timestamp + "</td></tr>";
 			}
-		
+			temp = temp+ "</table>";
 			
 			document.getElementById("song_comment").innerHTML = temp;
 		}
@@ -197,8 +196,8 @@ function showArtist(event){
 
 	$.ajax({
 
-		url: "showAlbum.php",
-		data: {},
+		url: "showArtist.php",
+		data: {Artist: Artist },
 		method: "POST",
 		dataType: "json",
 
@@ -210,6 +209,11 @@ function showArtist(event){
 			alert("成功");
 			//接收丟回來的資料並印出
 			var temp = "<table>";
+			
+			for(var n = 0; n< res.len; n++){
+				temp = temp +"<tr><td>"+ res[n].Artist + "</td><td>" + res[n].Ecompany + "</td><td>"+ res[n].Found_date + "</td></tr>";
+			}
+			temp = temp+ "</table>";
 
 		
 			
@@ -224,7 +228,7 @@ function showArtist2(event){
 	$.ajax({
 
 		url: "showArtist2.php",
-		data: {},
+		data: {Artist: Artist},
 		method: "POST",
 		dataType: "json",
 
@@ -238,7 +242,7 @@ function showArtist2(event){
 			var temp = "<table>";	
 						
 				for(var n = 0; n< res.len; n++){
-					temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].Artist + "</td><td>" + res[n].Album + "</td><td>" + res[n].Song + "</td></tr>";
+					temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].Artist + "</td><td>" + res[n].Album + "</td><td>" + res[n].Song# + "</td></tr>";
 				}
 						
 				temp = temp+ "</table>";
@@ -256,7 +260,7 @@ function showAlbum(event){
 
 		url: "showAlbum.php",
 		data: {Artist:artist,
-			Album:album},
+			Album:album },
 		method: "POST",
 		dataType: "json",
 
@@ -267,7 +271,12 @@ function showAlbum(event){
 		success:function(res){                                                               //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
-		
+			var temp = "<table>";	
+						
+				for(var n = 0; n< res.len; n++){
+					temp = temp +"<tr><td>"+ res[n].Aname +"</td><td>"+ res[n].Adate + "</td><td>" + res[n].Rcompany + "</td><td>" + res[n].Artist + "</td><td>"+ res[n].producer + "</td><td>"+ res[n].cover +"</td></tr>";
+				}						
+				temp = temp+ "</table>";	
 			
 			document.getElementById("album1").innerHTML = temp;
 		}
@@ -281,7 +290,8 @@ function showAlbum2(event){
 	$.ajax({
 
 		url: "showAlbum2.php",
-		data: {},
+		data: {Album: Album,
+			Artist: Artist},
 		method: "POST",
 		dataType: "json",
 
@@ -292,7 +302,13 @@ function showAlbum2(event){
 		success:function(res){                                                               //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
-		
+			var temp = "<table>";	
+						
+				for(var n = 0; n< res.len; n++){
+					temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].Artist + "</td><td>" + res[n].Album + "</td><td>" + res[n].Song# + "</td></tr>";
+				}
+						
+				temp = temp+ "</table>";		
 			
 			document.getElementById("album2").innerHTML = temp;
 		}
@@ -305,7 +321,9 @@ function showConcert(event){
 	$.ajax({
 
 		url: "showConcert.php",
-		data: {},
+		data: {ConcertName: ConcertName,
+			ConcertDate: ConcertDate,
+			time: time },
 		method: "POST",
 		dataType: "json",
 
@@ -316,8 +334,14 @@ function showConcert(event){
 		success:function(res){                                                               //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
-		
-			
+			var temp = "<table>";	
+						
+			for(var n = 0; n< res.len; n++){
+				temp = temp +"<tr><td>"+ res[n].ConcertName +"</td><td>"+ res[n].ConcertDate + "</td><td>" + res[n].time + "</td><td>" + res[n].Artist + "</td><td>" + res[n].ConcertLocation+ "</td></tr>";
+			}
+					
+			temp = temp+ "</table>";		
+
 			document.getElementById("concert").innerHTML = temp;
 		}
 
@@ -329,7 +353,9 @@ function showSetlist(event){
 	$.ajax({
 
 		url: "showSetlist.php",
-		data: {},
+		data: {ConcertName:ConcertName,
+			ConcertDate: ConcertDate,
+			time: time },
 		method: "POST",
 		dataType: "json",
 
@@ -340,9 +366,108 @@ function showSetlist(event){
 		success:function(res){                                                               //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
+			var temp = "<table>";
+			for(var n = 0; n< res.len; n++){
+				temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].# + "</td></tr>";
+			}
+					
+			temp = temp+ "</table>";		
+
 		
 			
 			document.getElementById("setlist").innerHTML = temp;
+		}
+
+	})	
+}
+
+function showMember(event){
+
+	$.ajax({
+
+		url: "showMember.php",
+		data: {Artist: Artist },
+		method: "POST",
+		dataType: "json",
+
+		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+			alert("失敗");	
+		},
+
+		success:function(res){                                                               //傳送成功則跳出成功訊息  
+			alert("成功");
+			//接收丟回來的資料並印出
+			var temp = "<table>";	
+						
+			for(var n = 0; n< res.len; n++){
+				temp = temp +"<tr><td>"+ res[n].Mname +"</td><td>"+ res[n].Bdate + "</td><td>" + res[n].instrument + "</td></tr>";
+			}
+					
+			temp = temp+ "</table>";		
+
+			document.getElementById("members").innerHTML = temp;
+		}
+
+	})	
+}
+
+function showSongInfo(event){
+
+	$.ajax({
+
+		url: "showSongInfo.php",
+		data: {Artist: Artist,
+			Sname: Sname },
+		method: "POST",
+		dataType: "json",
+
+		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+			alert("失敗");	
+		},
+
+		success:function(res){                                                               //傳送成功則跳出成功訊息  
+			alert("成功");
+			//接收丟回來的資料並印出
+			var temp = "<table>";	
+						
+			for(var n = 0; n< res.len; n++){
+				temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].Artist + "</td><td>" + res[n].Lyrics +"</td><td>"+ res[n].Composer +"</td><td>"+ res[n].Language +"</td><td>" + res[n].Length + "</td></tr>";
+			}
+					
+			temp = temp+ "</table>";		
+
+			document.getElementById("members").innerHTML = temp;
+		}
+
+	})	
+}
+
+function showSimilarSongs(event){
+
+	$.ajax({
+
+		url: "similarSong.php",
+		data: {Artist: Artist,
+			Sname: Sname },
+		method: "POST",
+		dataType: "json",
+
+		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+			alert("失敗");	
+		},
+
+		success:function(res){                                                               //傳送成功則跳出成功訊息  
+			alert("成功");
+			//接收丟回來的資料並印出
+			var temp = "<table>";	
+						
+			for(var n = 0; n< res.len; n++){
+				temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].Artist + "</td><td>" + res[n].Album + "</td><td>"+ res[n].Song# +"</td></tr>";
+			}
+					
+			temp = temp+ "</table>";		
+
+			document.getElementById("members").innerHTML = temp;
 		}
 
 	})	
@@ -378,11 +503,11 @@ btn6.addEventListener('load', showConcert, false);
 var btn8 = document.getElementById('setlist');
 btn6.addEventListener('load', showSetlist, false);
 
-var btn9 = document.getElementById('song1');
+var btn9 = document.getElementById('song_info');
 btn6.addEventListener('load', showSongInfo, false);
 
-var btn10 = document.getElementById('lyric');
-btn6.addEventListener('load', showSongLyrics, false);
+var btn10 = document.getElementById('similar_songs');
+btn6.addEventListener('load', showSimilarSongs, false);
 
 var prev1 = document.getElementById('song_comment');
 prev1.addEventListener('load', showSongCommentPrev, false);
@@ -390,4 +515,6 @@ prev1.addEventListener('load', showSongCommentPrev, false);
 var btn11 = document.getElementById('song_comment');
 btn6.addEventListener('click', showSongComment, false);
 
+var mem = document.getElementById('members');
+mem.addEventListener('load', showMember, false);
 
