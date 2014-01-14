@@ -196,7 +196,7 @@ function showArtist(event){
 
 	$.ajax({
 
-		url: "showAlbum.php",
+		url: "showArtist.php",
 		data: {Artist: Artist },
 		method: "POST",
 		dataType: "json",
