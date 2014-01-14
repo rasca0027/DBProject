@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="controller.js"></script>
+        
+
   </head>
 
 
@@ -28,10 +31,16 @@
       <div class="span7 offset5">  
  
 
-        <form>      
-          <input type="text" class="span3" placeholder="search">
-          <button type="submit" class="btn">GO!</button>
+        <form method="POST">      
+          <input type="text" class="span3" placeholder="search" name="search" id="search">
+          <button type="submit" class="btn" id="go">GO!</button>
         </form>
+      </div>
+
+      <div class="well span6 offset3" id="result">Search Result
+        <div id="result1"></div>
+        <div id="result2"></div> 
+          
       </div>
 
 
