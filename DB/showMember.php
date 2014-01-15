@@ -1,12 +1,12 @@
 
 		<?php
 			$artist = $_POST["Artist"];
-			header('content-type: text/html; charset=utf-8');
+			//header('content-type: text/html; charset=utf-8');
 			//取出資料庫內容
 			include('connmusic.php');
 
 				//Acomment searched//
-				$res =  $mysqli->query("SELECT * FROM `member` WHERE `Artist` = '".$artist."'"); 
+				$res =  $mysqli->query("SELECT * FROM `member` WHERE `Artist` LIKE '".$artist."'"); 
 				$row_total = $res->num_rows;
 				
 				//存入 concerts_data

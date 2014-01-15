@@ -7,8 +7,8 @@
 			include('connmusic.php');
 
 				//Acomment searched//
-				$res =  $mysqli->query("SELECT * FROM `songs` WHERE `Sname` LIKE '%".$song."%' AND `Artist` = '".$artist."'"); 
-				$row_total = $res->num_rows;
+				$res =  $mysqli->query("SELECT `Sname`, `Artist`, `Album`, `Song#` as 'number' FROM `songs` WHERE `Sname` LIKE '%".$song."%' AND `Artist` LIKE '".$artist."'"); 
+				$row_total = $res->num_rows($res);
 				
 				//存入 concerts_data
 				for ($y = 0;$y < ($row_total) ;$y++){

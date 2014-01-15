@@ -14,8 +14,8 @@
 			}
 
 				//Acomment searched//
-				$res =  $mysqli->query("SELECT `Acomment` `Timestamp` FROM `album_comment` WHERE `Artist` = '".$artist."' AND `Album` = '".$album."'"); 
-				$row_total = $res->num_rows;
+				$res =  $mysqli->query("SELECT `Acomment`, `Timestamp` FROM `album_comment` WHERE `Artist` LIKE '".$artist."' AND `Album` LIKE '".$album."'"); 
+				$row_total = $res->num_rows($res);
 				
 				//存入 concerts_data
 				for ($y = 0;$y < ($row_total) ;$y++){

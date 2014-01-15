@@ -8,28 +8,28 @@ function eventHandler(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){ //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){//傳送成功則跳出成功訊息  
 			alert("成功");
-						
+					
 			var temp = "<table>";	
 						
 				for(var n = 0; n< res.len; n++){
-					temp = temp +"<tr><td>"+  '<a href="./songs.html?Sname=' + res[n].Sname + '">'+res[n].Sname+"</a></td><td>"
-					+ '<a href="./songs.html?Artist=' + res[n].Artist +'">'+res[n].Artist +"</a></td><td>" 
-					+ '<a href="./songs.html?Album=' + res[n].Album + '">' + res[n].Album + "</a></td><td>" 
-					+ '<a href="./songs.html?Song#=' + res[n].Song# + '">' + res[n].Song# +"</a></td></tr>";
+					temp = temp +"<tr><td>"+ linkout('song', res[n]) +"</td><td>" +
+					linkout('artist', res[n]) +"</td><td>" +
+					linkout('album',  res[n]) + "</td><td>" +
+					res[n].number +"</td></tr>" ;
 				}
-												
+										
 			temp = temp+ "</table>";	
 			document.getElementById("result1").innerHTML = temp;
 		}
 
-	})	
-
+	});	
+	//alert('hi');
 }
 
 function eventHandler1(event){
@@ -42,28 +42,28 @@ function eventHandler1(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			var temp = "<table>";	
-						
+					/*
 			for(var n = 0; n< res.len; n++){
 				temp = temp +"<tr><td>"+ 
-				res[n].ConcertName +"</td><td>"+ 
+				linkout('concert', res[n]) +"</td><td>"+ 
 				res[n].ConcertDate + "</td><td>" + 
 				res[n].time + "</td><td>" + 
-				res[n].Artist + "</td><td>" + 
-				res[n].Sname +"</td></tr>";
-			}						
+				linkout('artist', res[n]) + "</td><td>" + 
+				linkout('song',   res[n]) +"</td></tr>";
+			}				*/
 			temp = temp+ "</table>";	
 			
 			document.getElementById("result2").innerHTML = temp;
 		}
 
-	})	
+	});	
 
 }
 function showAlbumCommentPrev(event){
@@ -77,11 +77,11 @@ function showAlbumCommentPrev(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的comment資料並印出 應該是印出comment而已ㄅ
 			var temp = "<table>";
@@ -93,7 +93,7 @@ function showAlbumCommentPrev(event){
 			document.getElementById("album_comment").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
 function showAlbumComment(event){
@@ -109,11 +109,11 @@ function showAlbumComment(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的comment資料並印出 應該是印出comment而已ㄅ
 			var temp = "<table>";
@@ -125,7 +125,7 @@ function showAlbumComment(event){
 			document.getElementById("album_comment").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
 function showSongComment(event){
@@ -142,11 +142,11 @@ function showSongComment(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的comment資料並印出 應該是印出comment而已ㄅ
 			var temp = "<table>";
@@ -158,7 +158,7 @@ function showSongComment(event){
 			document.getElementById("song_comment").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 function showSongCommentPrev(event){
 
@@ -172,11 +172,11 @@ function showSongCommentPrev(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的comment資料並印出 應該是印出comment而已ㄅ
 			var temp = "<table>";
@@ -188,11 +188,11 @@ function showSongCommentPrev(event){
 			document.getElementById("song_comment").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
 
-function showArtist(event){
+function showArtist(Artist){
 
 	$.ajax({
 
@@ -201,11 +201,11 @@ function showArtist(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
 			var temp = "<table>";
@@ -214,16 +214,14 @@ function showArtist(event){
 				temp = temp +"<tr><td>"+ res[n].Artist + "</td><td>" + res[n].Ecompany + "</td><td>"+ res[n].Found_date + "</td></tr>";
 			}
 			temp = temp+ "</table>";
-
-		
 			
 			document.getElementById("artist").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
-function showArtist2(event){
+function showArtist2(Artist){
 
 	$.ajax({
 
@@ -232,26 +230,26 @@ function showArtist2(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
 			var temp = "<table>";	
-						
+				
 				for(var n = 0; n< res.len; n++){
-					temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].Artist + "</td><td>" + res[n].Album + "</td><td>" + res[n].Song# + "</td></tr>";
+					temp = temp +"<tr><td>"+ linkout('song', res[n]) + 
+					"</td><td>" + linkout('album', res[n]) + 
+					"</td><td>" + res[n].number + "</td></tr>";
 				}
-						
+
 				temp = temp+ "</table>";
-		
-			
 			document.getElementById("artist2").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
 function showAlbum(event){
@@ -264,24 +262,27 @@ function showAlbum(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
+			
 			var temp = "<table>";	
 						
 				for(var n = 0; n< res.len; n++){
-					temp = temp +"<tr><td>"+ res[n].Aname +"</td><td>"+ res[n].Adate + "</td><td>" + res[n].Rcompany + "</td><td>" + res[n].Artist + "</td><td>"+ res[n].producer + "</td><td>"+ res[n].cover +"</td></tr>";
+					temp = temp +"<tr><td>"+ res[n].Aname +"</td><td>"+ res[n].Adate + "</td><td>" + res[n].Rcompany + 
+					"</td><td>" + linkout('artist', res[n]) + 
+					"</td><td>"+ res[n].producer + "</td><td>"+ res[n].cover +"</td></tr>";
 				}						
 				temp = temp+ "</table>";	
 			
 			document.getElementById("album1").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
 
@@ -295,17 +296,20 @@ function showAlbum2(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
+			
 			var temp = "<table>";	
-						
+					
 				for(var n = 0; n< res.len; n++){
-					temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].Artist + "</td><td>" + res[n].Album + "</td><td>" + res[n].Song# + "</td></tr>";
+					temp = temp +"<tr><td>"+ linkout('song', res[n]) +
+					"</td><td>"+ linkout('artist', res[n]) + 
+					"</td><td>" + res[n].number + "</td></tr>";
 				}
 						
 				temp = temp+ "</table>";		
@@ -313,7 +317,7 @@ function showAlbum2(event){
 			document.getElementById("album2").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
 function showConcert(event){
@@ -327,25 +331,26 @@ function showConcert(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
 			var temp = "<table>";	
-						
+			
 			for(var n = 0; n< res.len; n++){
-				temp = temp +"<tr><td>"+ res[n].ConcertName +"</td><td>"+ res[n].ConcertDate + "</td><td>" + res[n].time + "</td><td>" + res[n].Artist + "</td><td>" + res[n].ConcertLocation+ "</td></tr>";
+				temp = temp +"<tr><td>"+ res[n].ConcertName +"</td><td>"+ res[n].ConcertDate + "</td><td>" + res[n].time + 
+				"</td><td>" + linkout('artist', res[n]) + "</td><td>" + res[n].ConcertLocation+ "</td></tr>";
 			}
-					
+				
 			temp = temp+ "</table>";		
 
 			document.getElementById("concert").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
 function showSetlist(event){
@@ -359,18 +364,18 @@ function showSetlist(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
 			var temp = "<table>";
 			for(var n = 0; n< res.len; n++){
-				temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].# + "</td></tr>";
+				temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].number + "</td></tr>";
 			}
-					
+			
 			temp = temp+ "</table>";		
 
 		
@@ -378,10 +383,10 @@ function showSetlist(event){
 			document.getElementById("setlist").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
-function showMember(event){
+function showMember(Artist){
 
 	$.ajax({
 
@@ -390,15 +395,15 @@ function showMember(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
 			var temp = "<table>";	
-						
+			
 			for(var n = 0; n< res.len; n++){
 				temp = temp +"<tr><td>"+ res[n].Mname +"</td><td>"+ res[n].Bdate + "</td><td>" + res[n].instrument + "</td></tr>";
 			}
@@ -408,7 +413,7 @@ function showMember(event){
 			document.getElementById("members").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
 function showSongInfo(event){
@@ -421,25 +426,27 @@ function showSongInfo(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
 			var temp = "<table>";	
-						
+			
 			for(var n = 0; n< res.len; n++){
-				temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].Artist + "</td><td>" + res[n].Lyrics +"</td><td>"+ res[n].Composer +"</td><td>"+ res[n].Language +"</td><td>" + res[n].Length + "</td></tr>";
+				temp = temp +"<tr><td>"+ res[n].Sname +
+				"</td><td>"+ linkout('artist', res[n]) + 
+				"</td><td>" + res[n].Lyrics +"</td><td>"+ res[n].Composer +"</td><td>"+ res[n].Language +"</td><td>" + res[n].Length + "</td></tr>";
 			}
-					
+				
 			temp = temp+ "</table>";		
 
 			document.getElementById("members").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
 function showSimilarSongs(event){
@@ -452,17 +459,20 @@ function showSimilarSongs(event){
 		type: "POST",
 		dataType: "json",
 
-		error: function(res){                                                                  //傳送失敗則跳出失敗訊息
+		error: function(res){     //傳送失敗則跳出失敗訊息
 			alert("失敗");	
 		},
 
-		success:function(res){                                                               //傳送成功則跳出成功訊息  
+		success:function(res){  //傳送成功則跳出成功訊息  
 			alert("成功");
 			//接收丟回來的資料並印出
 			var temp = "<table>";	
-						
+					
 			for(var n = 0; n< res.len; n++){
-				temp = temp +"<tr><td>"+ res[n].Sname +"</td><td>"+ res[n].Artist + "</td><td>" + res[n].Album + "</td><td>"+ res[n].Song# +"</td></tr>";
+				temp = temp +"<tr><td>"+ linkout('song', res[n]) +
+				"</td><td>"+ linkout('artist', res[n]) + 
+				"</td><td>" + linkout('album', res[n]) + 
+				"</td><td>"+ res[n].number +"</td></tr>";
 			}
 					
 			temp = temp+ "</table>";		
@@ -470,9 +480,10 @@ function showSimilarSongs(event){
 			document.getElementById("members").innerHTML = temp;
 		}
 
-	})	
+	});	
 }
 
+/*
 var btn = document.getElementById('go');
 btn.addEventListener('click', eventHandler, false) ;
 
@@ -517,4 +528,24 @@ btn6.addEventListener('click', showSongComment, false);
 
 var mem = document.getElementById('members');
 mem.addEventListener('load', showMember, false);
-
+*/
+function linkout(linktype,data){
+	var outlink = 'NOTHING HERE~';
+	if (linktype == 'album') {
+		//Album Artist needed
+		outlink = '<a href="./albums.html?Album=' + data.Album + '&Artist=' + data.Artist + '">' + data.Album +'</a>';
+	}
+	else if (linktype == 'artist') {
+		//Artist needed
+		outlink = '<a href="./artists.html?Artist=' + data.Artist + '">' + data.Artist +'</a>';
+	}
+	else if (linktype == 'song') {
+		//Sname Artist needed
+		outlink = '<a href="./song.html?Sname=' + data.Sname + '&Artist=' + data.Artist + '">' + data.Sname +'</a>';
+	}
+	else if (linktype == 'concert') {
+		//ConcertName ConcertDate time needed
+		outlink = '<a href="./concerts.html?ConcertName=' + data.ConcertName + '&ConcertDate=' + data.ConcertDate + '&time=' + data.time + '">' + data.ConcertName +'</a>';
+	}
+	return outlink;
+}

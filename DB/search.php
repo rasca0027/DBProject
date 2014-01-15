@@ -1,33 +1,8 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Music Website</title>
-    <META http-equiv="Content-Type" content="text/html; charset=utf8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <script type="text/javascript" src="controller.js"></script>
-    <script type="application/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>   
-	</head>
 
-	<body>
-		<div class="navbar">
-        <div class="navbar-inner">
-          <ul class="nav">
-            <li class="active"><a href="./index.html">Home</a></li>
-            <li class="divider-vertical"></li>
-            <li><a href="#">Artists</a></li>
-            <li class="divider-vertical"></li>
-            <li><a href="#">Albums</a></li>
-            <li class="divider-vertical"></li>
-            <li><a href="#">Concerts</a></li>
-          </ul>
-        </div>
-    	</div>
-    	<div class="well span6 offset4">
 		<?php
 			$search = $_POST["search"];
 			//$search = "SMAP";
+			//header('content-type: text/html; charset=utf-8');
 			
 			//取出資料庫內容
 			include('connmusic.php');
@@ -41,21 +16,24 @@
 					$row = $res->fetch_array(MYSQLI_ASSOC);
 					//echo $row['Sname']."&nbsp".$row['Artist']."&nbsp".$row['Album']."<br>";
 					$saa_data[$y] = $row;
-					echo "<table>";
-					echo "<tr>";
-					echo "<td>".$row['Sname']."</td>";
-					echo "<td>".$row['Artist']."</td>";
-					echo "<td>".$row['Album']."</td>";
-					echo "<td>".$row['Song#']."</td>";
-					echo "</tr>";
-					echo "</table>";
 				}
 				$saa_data['len'] = $row_total;
 
-  		//echo json_encode($saa_data);
+  		$myjson = my_json_encode($saa_data);
+  		echo $myjson;
+
+		function my_json_encode($phparr)
+		{
+			if(function_exists("json_encode"))
+			{
+				return json_encode($phparr);
+			}
+			else
+			{
+				require_once 'json/json.class.php';
+				$json = new Services_JSON;
+				return $json->encode($phparr);
+			}
+		}
 
 		?>
-	</div>
-
-	</body>
-</html>

@@ -8,8 +8,8 @@
 			include('connmusic.php');
 
 				//Acomment searched//
-				$res =  $mysqli->query("SELECT `Sname` `#` FROM `setlist` WHERE `ConcertName` = '".$cname."' AND `ConcertDate` = '".$cdate."' AND `time` = '".$time."' "); 
-				$row_total = $res->num_rows;
+				$res =  $mysqli->query("SELECT `Sname`, `#` as 'number' FROM `setlist` WHERE `ConcertName` LIKE '".$cname."' AND `ConcertDate` LIKE '".$cdate."' AND `time` LIKE '".$time."' "); 
+				$row_total = $res->num_rows($res);
 				
 				//存入 concerts_data
 				for ($y = 0;$y < ($row_total) ;$y++){

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script language="JavaScript" src="controller.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
     <script type="text/javascript" src="controller.js"></script>
 
   </head>
@@ -26,7 +28,7 @@
         </div>
     </div>
 
-    <div class="well span6 offset3" id="artist">
+    <div class="well span6 offset3" onclick="show()" id="artist">
      	Artist: (name and autobiography)  
       <!--fetch album資料並列出-->
     </div>
@@ -40,6 +42,39 @@
      	Albums and songs:
       <!--fetch songs資料並列出 要有超連結-->
     </div>
+
+    <script type="text/javascript">
+    
+      function show(){
+             
+        //URL
+        var url = window.location.href;
+         
+        //取得問號之後的值
+        var temp = url.split("?");
+        
+     
+        //將值再度分開
+        var vars = temp[1].split("=");
+     
+        var varst = vars[1].split("%20");
+        var l = varst.length;
+        var temp2 = varst.toString();
+        alert(l);
+        for (var i = 1; i < l; i ++) {
+          temp2 = temp2.replace(",", " ");
+        };
+       
+        alert(temp2);
+
+        showArtist(temp2);
+        showArtist2(temp2);
+        showMember(temp2);
+
+     
+       }
+     
+    </script>
 
 
   </body>

@@ -1,14 +1,14 @@
 
 		<?php
-			$name = $_POST["search"];
-			header('content-type: text/html; charset=utf-8');
+			$search = $_POST["search"];
+			//header('content-type: text/html; charset=utf-8');
 			
 			//取出資料庫內容
 			include('connmusic.php');
 
 				//CONCERTS searched//
 				$res =  $mysqli->query("SELECT * FROM `concerts` NATURAL JOIN `setlist` WHERE `ConcertName` LIKE '%".$search."%' OR `Artist` LIKE '%".$search."%' OR `Sname` LIKE '%".$search."%' "); 
-				$row_total = $res->num_rows;
+				$row_total = $res->num_rows($res);
 				
 				//存入 concerts_data
 				for ($y = 0;$y < ($row_total) ;$y++){

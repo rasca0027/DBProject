@@ -7,8 +7,8 @@
 			include('connmusic.php');
 
 				//SONGS searched//
-				$res =  $mysqli->query("SELECT * FROM `songs` WHERE `Aname` = '".$album."' AND `Artist` = '".$artist."'"); 
-				$row_total = $res->num_rows;
+				$res =  $mysqli->query("SELECT `Sname`, `Artist`, `Album`, `Song#` as 'number' FROM `songs` WHERE `Aname` LIKE '".$album."' AND `Artist` LIKE '".$artist."'"); 
+				$row_total = $res->num_rows($res);
 				
 				//存入 saa_data
 				for ($y = 0;$y < ($row_total) ;$y++){

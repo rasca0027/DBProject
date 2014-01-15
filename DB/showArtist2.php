@@ -1,12 +1,12 @@
 
 		<?php
 			$artist = $_POST["Artist"];
-			header('content-type: text/html; charset=utf-8');
+			//header('content-type: text/html; charset=utf-8');
 			//取出資料庫內容
 			include('connmusic.php');
 
 				//SONGS searched//
-				$res =  $mysqli->query("SELECT * FROM `songs` WHERE `Artist` = '".$artist."'"); 
+				$res =  $mysqli->query("SELECT `Sname`, `Artist`, `Album`, `Song#` as 'number' FROM `songs` WHERE `Artist` LIKE '".$artist."'"); 
 				$row_total = $res->num_rows;
 				
 				//存入 saa_data

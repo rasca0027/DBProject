@@ -1,0 +1,427 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"showSong",
+				"showSongInfo"
+			],
+			[
+				"Co",
+				"ConcertDate"
+			],
+			[
+				"C",
+				"ConcertName"
+			],
+			[
+				"t",
+				"time"
+			],
+			[
+				"A",
+				"Artist"
+			],
+			[
+				"c",
+				"concert"
+			],
+			[
+				"co",
+				"album_comment"
+			],
+			[
+				"album",
+				"album2"
+			],
+			[
+				"showAl",
+				"showAlbum"
+			],
+			[
+				"al",
+				"album1"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"comment",
+				"comment"
+			],
+			[
+				"event",
+				"event"
+			],
+			[
+				"fun",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "function eventHandler(event){\n	var search = $('#search').val();\n\n	$.ajax({\n\n		url: \"search.php\",\n		data: {search: search},\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n						\n			var temp = \"<table>\";	\n						\n				for(var n = 0; n< res.len; n++){\n					temp = temp +\"<tr><td>\"+  '<a href=\"./songs.html?Sname=' + res[n].Sname + '\">'+res[n].Sname+\"</a></td><td>\"\n					+ '<a href=\"./songs.html?Artist=' + res[n].Artist +'\">'+res[n].Artist +\"</a></td><td>\" \n					+ '<a href=\"./songs.html?Album=' + res[n].Album + '\">' + res[n].Album + \"</a></td><td>\" \n					+ '<a href=\"./songs.html?Song#=' + res[n].Song# + '\">' + res[n].Song# +\"</a></td></tr>\";\n				}\n												\n			temp = temp+ \"</table>\";	\n			document.getElementById(\"result1\").innerHTML = temp;\n		}\n\n	})	\n\n}\n\nfunction eventHandler1(event){\n	var search = $('#search').val();\n\n	$.ajax({\n\n		url: \"search2.php\",\n		data: {search: search},\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			var temp = \"<table>\";	\n						\n			for(var n = 0; n< res.len; n++){\n				temp = temp +\"<tr><td>\"+ \n				res[n].ConcertName +\"</td><td>\"+ \n				res[n].ConcertDate + \"</td><td>\" + \n				res[n].time + \"</td><td>\" + \n				res[n].Artist + \"</td><td>\" + \n				res[n].Sname +\"</td></tr>\";\n			}						\n			temp = temp+ \"</table>\";	\n			\n			document.getElementById(\"result2\").innerHTML = temp;\n		}\n\n	})	\n\n}\nfunction showAlbumCommentPrev(event){\n\n	$.ajax({\n\n		url: \"album_comment.php\",\n		data: { Artist: Artist,\n			Album: Album,\n			comment: \"empty\"},\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的comment資料並印出 應該是印出comment而已ㄅ\n			var temp = \"<table>\";\n			for(var n = 0; n< res.len; n++){\n				temp = temp +\"<tr><td>\"+ res[n].Acomment + \"</td><td>\" + res[n].Timestamp + \"</td></tr>\";\n			}\n			temp = temp+ \"</table>\";\n			\n			document.getElementById(\"album_comment\").innerHTML = temp;\n		}\n\n	})	\n}\n\nfunction showAlbumComment(event){\n\n	var comment = $('#comment').val();\n\n	$.ajax({\n\n		url: \"album_comment.php\",\n		data: { Artist: Artist,\n			Album: Album,\n			comment: comment},\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的comment資料並印出 應該是印出comment而已ㄅ\n			var temp = \"<table>\";\n			for(var n = 0; n< res.len; n++){\n				temp = temp +\"<tr><td>\"+ res[n].Acomment + \"</td><td>\" + res[n].Timestamp + \"</td></tr>\";\n			}\n			temp = temp+ \"</table>\";\n			\n			document.getElementById(\"album_comment\").innerHTML = temp;\n		}\n\n	})	\n}\n\nfunction showSongComment(event){\n\n	var comment = $('#comment').val();\n\n	$.ajax({\n\n		url: \"song_comment.php\",\n		data: { Artist: Artist,\n			Album: Album,\n			Sname: Sname,\n			comment: comment},\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的comment資料並印出 應該是印出comment而已ㄅ\n			var temp = \"<table>\";\n			for(var n = 0; n< res.len; n++){\n				temp = temp +\"<tr><td>\"+ res[n].Scomment + \"</td><td>\" + res[n].Timestamp + \"</td></tr>\";\n			}\n			temp = temp+ \"</table>\";\n			\n			document.getElementById(\"song_comment\").innerHTML = temp;\n		}\n\n	})	\n}\nfunction showSongCommentPrev(event){\n\n	$.ajax({\n\n		url: \"song_comment.php\",\n		data: { Artist: Artist,\n			Album: Album,\n			Sname: Sname,\n			comment: \"empty\" },\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的comment資料並印出 應該是印出comment而已ㄅ\n			var temp = \"<table>\";\n			for(var n = 0; n< res.len; n++){\n				temp = temp +\"<tr><td>\"+ res[n].Scomment + \"</td><td>\" + res[n].Timestamp + \"</td></tr>\";\n			}\n			temp = temp+ \"</table>\";\n			\n			document.getElementById(\"song_comment\").innerHTML = temp;\n		}\n\n	})	\n}\n\n\nfunction showArtist(event){\n\n	$.ajax({\n\n		url: \"showArtist.php\",\n		data: {Artist: Artist },\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的資料並印出\n			var temp = \"<table>\";\n			\n			for(var n = 0; n< res.len; n++){\n				temp = temp +\"<tr><td>\"+ res[n].Artist + \"</td><td>\" + res[n].Ecompany + \"</td><td>\"+ res[n].Found_date + \"</td></tr>\";\n			}\n			temp = temp+ \"</table>\";\n\n		\n			\n			document.getElementById(\"artist\").innerHTML = temp;\n		}\n\n	})	\n}\n\nfunction showArtist2(event){\n\n	$.ajax({\n\n		url: \"showArtist2.php\",\n		data: {Artist: Artist},\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的資料並印出\n			var temp = \"<table>\";	\n						\n				for(var n = 0; n< res.len; n++){\n					temp = temp +\"<tr><td>\"+ res[n].Sname +\"</td><td>\"+ res[n].Artist + \"</td><td>\" + res[n].Album + \"</td><td>\" + res[n].Song# + \"</td></tr>\";\n				}\n						\n				temp = temp+ \"</table>\";\n		\n			\n			document.getElementById(\"artist2\").innerHTML = temp;\n		}\n\n	})	\n}\n\nfunction showAlbum(event){\n\n	$.ajax({\n\n		url: \"showAlbum.php\",\n		data: {Artist:artist,\n			Album:album },\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的資料並印出\n			var temp = \"<table>\";	\n						\n				for(var n = 0; n< res.len; n++){\n					temp = temp +\"<tr><td>\"+ res[n].Aname +\"</td><td>\"+ res[n].Adate + \"</td><td>\" + res[n].Rcompany + \"</td><td>\" + res[n].Artist + \"</td><td>\"+ res[n].producer + \"</td><td>\"+ res[n].cover +\"</td></tr>\";\n				}						\n				temp = temp+ \"</table>\";	\n			\n			document.getElementById(\"album1\").innerHTML = temp;\n		}\n\n	})	\n}\n\n\nfunction showAlbum2(event){\n\n	$.ajax({\n\n		url: \"showAlbum2.php\",\n		data: {Album: Album,\n			Artist: Artist},\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的資料並印出\n			var temp = \"<table>\";	\n						\n				for(var n = 0; n< res.len; n++){\n					temp = temp +\"<tr><td>\"+ res[n].Sname +\"</td><td>\"+ res[n].Artist + \"</td><td>\" + res[n].Album + \"</td><td>\" + res[n].Song# + \"</td></tr>\";\n				}\n						\n				temp = temp+ \"</table>\";		\n			\n			document.getElementById(\"album2\").innerHTML = temp;\n		}\n\n	})	\n}\n\nfunction showConcert(event){\n\n	$.ajax({\n\n		url: \"showConcert.php\",\n		data: {ConcertName: ConcertName,\n			ConcertDate: ConcertDate,\n			time: time },\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的資料並印出\n			var temp = \"<table>\";	\n						\n			for(var n = 0; n< res.len; n++){\n				temp = temp +\"<tr><td>\"+ res[n].ConcertName +\"</td><td>\"+ res[n].ConcertDate + \"</td><td>\" + res[n].time + \"</td><td>\" + res[n].Artist + \"</td><td>\" + res[n].ConcertLocation+ \"</td></tr>\";\n			}\n					\n			temp = temp+ \"</table>\";		\n\n			document.getElementById(\"concert\").innerHTML = temp;\n		}\n\n	})	\n}\n\nfunction showSetlist(event){\n\n	$.ajax({\n\n		url: \"showSetlist.php\",\n		data: {ConcertName:ConcertName,\n			ConcertDate: ConcertDate,\n			time: time },\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的資料並印出\n			var temp = \"<table>\";\n			for(var n = 0; n< res.len; n++){\n				temp = temp +\"<tr><td>\"+ res[n].Sname +\"</td><td>\"+ res[n].# + \"</td></tr>\";\n			}\n					\n			temp = temp+ \"</table>\";		\n\n		\n			\n			document.getElementById(\"setlist\").innerHTML = temp;\n		}\n\n	})	\n}\n\nfunction showMember(event){\n\n	$.ajax({\n\n		url: \"showMember.php\",\n		data: {Artist: Artist },\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的資料並印出\n			var temp = \"<table>\";	\n						\n			for(var n = 0; n< res.len; n++){\n				temp = temp +\"<tr><td>\"+ res[n].Mname +\"</td><td>\"+ res[n].Bdate + \"</td><td>\" + res[n].instrument + \"</td></tr>\";\n			}\n					\n			temp = temp+ \"</table>\";		\n\n			document.getElementById(\"members\").innerHTML = temp;\n		}\n\n	})	\n}\n\nfunction showSongInfo(event){\n\n	$.ajax({\n\n		url: \"showSongInfo.php\",\n		data: {Artist: Artist,\n			Sname: Sname },\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的資料並印出\n			var temp = \"<table>\";	\n						\n			for(var n = 0; n< res.len; n++){\n				temp = temp +\"<tr><td>\"+ res[n].Sname +\"</td><td>\"+ res[n].Artist + \"</td><td>\" + res[n].Lyrics +\"</td><td>\"+ res[n].Composer +\"</td><td>\"+ res[n].Language +\"</td><td>\" + res[n].Length + \"</td></tr>\";\n			}\n					\n			temp = temp+ \"</table>\";		\n\n			document.getElementById(\"members\").innerHTML = temp;\n		}\n\n	})	\n}\n\nfunction showSimilarSongs(event){\n\n	$.ajax({\n\n		url: \"similarSong.php\",\n		data: {Artist: Artist,\n			Sname: Sname },\n		method: \"POST\",\n		dataType: \"json\",\n\n		error: function(res){                                                                  //傳送失敗則跳出失敗訊息\n			alert(\"失敗\");	\n		},\n\n		success:function(res){                                                               //傳送成功則跳出成功訊息  \n			alert(\"成功\");\n			//接收丟回來的資料並印出\n			var temp = \"<table>\";	\n						\n			for(var n = 0; n< res.len; n++){\n				temp = temp +\"<tr><td>\"+ res[n].Sname +\"</td><td>\"+ res[n].Artist + \"</td><td>\" + res[n].Album + \"</td><td>\"+ res[n].Song# +\"</td></tr>\";\n			}\n					\n			temp = temp+ \"</table>\";		\n\n			document.getElementById(\"members\").innerHTML = temp;\n		}\n\n	})	\n}\n\n	var btn = document.getElementById('go');\n	btn.addEventListener('click', eventHandler, false) ;\n\nvar btn1 = document.getElementById('go');\nbtn.addEventListener('click', eventHandler1, false) ;\n\nvar btn2 = document.getElementById('album_comment');\nbtn2.addEventListener('click', showAlbumComment, false) ;\n\nvar prev2 = document.getElementById('album_comment');\nbtn2.addEventListener('load', showAlbumCommentPrev, false) ;\n\nvar btn3 = document.getElementById('artist');\nbtn3.addEventListener('load', showArtist, false);\n\nvar btn4 = document.getElementById('artist2');\nbtn4.addEventListener('load', showArtist2, false);\n\nvar btn5 = document.getElementById('album1');\nbtn5.addEventListener('load', showAlbum, false);\n\nvar btn6 = document.getElementById('album2');\nbtn6.addEventListener('load', showAlbum2, false);\n\nvar btn7 = document.getElementById('concert');\nbtn6.addEventListener('load', showConcert, false);\n\nvar btn8 = document.getElementById('setlist');\nbtn6.addEventListener('load', showSetlist, false);\n\nvar btn9 = document.getElementById('song_info');\nbtn6.addEventListener('load', showSongInfo, false);\n\nvar btn10 = document.getElementById('similar_songs');\nbtn6.addEventListener('load', showSimilarSongs, false);\n\nvar prev1 = document.getElementById('song_comment');\nprev1.addEventListener('load', showSongCommentPrev, false);\n\nvar btn11 = document.getElementById('song_comment');\nbtn6.addEventListener('click', showSongComment, false);\n\nvar mem = document.getElementById('members');\nmem.addEventListener('load', showMember, false);\n\n",
+			"file": "/C/Users/rc/DB/DB/controller.js",
+			"file_size": 14731,
+			"file_write_time": 130341618387054541,
+			"settings":
+			{
+				"buffer_size": 13083,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/rc/DB/DB/artists.html",
+			"settings":
+			{
+				"buffer_size": 1218,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/rc/DB/DB/song.html",
+			"settings":
+			{
+				"buffer_size": 1577,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/rc/DB/DB/albums.html",
+			"settings":
+			{
+				"buffer_size": 1572,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/rc/DB/DB/index.html",
+			"settings":
+			{
+				"buffer_size": 1633,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/rc/DB/DB/concerts.html",
+			"settings":
+			{
+				"buffer_size": 1237,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/rc/DB/DB/phpReadMe.TXT",
+		"/C/Users/rc/DB/DB/showArtist.php",
+		"/C/AppServ/www/DB/search.html",
+		"/C/AppServ/www/DAY3/func.js",
+		"/C/AppServ/www/DAY3/index.html",
+		"/C/AppServ/www/bootstrap-3.0.0/hhhhh.html",
+		"/C/AppServ/www/bootstrap-3.0.0/index.html",
+		"/C/AppServ/www/prac2/bootstrap-3.0.0/examples/navbar/index.html",
+		"/C/AppServ/www/prac/index.html",
+		"/C/AppServ/www/hhhhh.html",
+		"/C/AppServ/www/func.js",
+		"/C/AppServ/www/ngggg.html",
+		"/C/AppServ/www/prac2/bootstrap-3.0.0/index.html",
+		"/C/AppServ/www/prac2/bootstrap-3.0.0/examples/grid/index.html",
+		"/C/AppServ/www/prac/stylesheets/lib/bootstrap/bootstrap.min.css",
+		"/C/Users/rc/ruby/alumnibook/source/javascripts/app/sdm_controller.js",
+		"/C/Users/rc/ruby/alumnibook/source/javascripts/templates/topic/topicIndex.html",
+		"/C/Users/rc/ruby/alumnibook/source/javascripts/app/sdm_app.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"song_info",
+			"mail"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/rc/DB/DB/controller.js",
+					"settings":
+					{
+						"buffer_size": 13083,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								30
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/rc/DB/DB/artists.html",
+					"settings":
+					{
+						"buffer_size": 1218,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								42,
+								42
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 60.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/rc/DB/DB/song.html",
+					"settings":
+					{
+						"buffer_size": 1577,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								569,
+								569
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 161.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/rc/DB/DB/albums.html",
+					"settings":
+					{
+						"buffer_size": 1572,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								767,
+								767
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/rc/DB/DB/index.html",
+					"settings":
+					{
+						"buffer_size": 1633,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								777,
+								777
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/rc/DB/DB/concerts.html",
+					"settings":
+					{
+						"buffer_size": 1237,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								767,
+								767
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 241.0,
+	"status_bar_visible": true
+}
